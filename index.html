@@ -320,69 +320,64 @@ h1.hero-h1 span{color:var(--gold);}
 .services-head .section-title em{color:var(--gold);}
 .services-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1.2rem;position:relative;z-index:1;
+  gap:1.5rem;position:relative;z-index:1;
 }
 .serv-card{
-  border-radius:16px;overflow:hidden;
-  position:relative;cursor:pointer;
-  min-height:260px;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  transition:transform .35s,box-shadow .35s;
+  border-radius:40px 0 40px 0;
+  overflow:hidden;
+  background:#0f1f15;
+  border:1px solid rgba(255,255,255,.07);
+  display:flex;flex-direction:column;
+  cursor:pointer;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
 }
-.serv-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.5);}
+.serv-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+  border-color:rgba(201,168,76,.25);
+}
 .serv-card-img{
-  position:absolute;inset:0;
+  width:100%;height:220px;
   background-size:cover;background-position:center;
-  transition:transform .6s ease;
+  position:relative;overflow:hidden;flex-shrink:0;
+  transition:transform .5s ease;
 }
-.serv-card:hover .serv-card-img{transform:scale(1.06);}
-.serv-card-gradient{
-  position:absolute;inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(5,14,8,.95) 0%,
-    rgba(11,24,16,.75) 45%,
-    rgba(11,24,16,.2) 100%
-  );
-  transition:background .4s;
-}
-.serv-card:hover .serv-card-gradient{
-  background:linear-gradient(
-    to top,
-    rgba(5,14,8,.98) 0%,
-    rgba(24,51,36,.82) 50%,
-    rgba(38,92,58,.35) 100%
-  );
-}
+.serv-card:hover .serv-card-img{transform:scale(1.05);}
 .serv-tag{
-  position:absolute;top:1rem;left:1rem;z-index:3;
+  position:absolute;top:.8rem;left:.8rem;z-index:2;
   background:var(--gold);color:#0b1810;
   font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
   padding:.28rem .7rem;border-radius:20px;
 }
 .serv-card-body{
-  position:relative;z-index:2;
-  padding:1.6rem;
+  padding:1.6rem 1.8rem 2rem;
+  display:flex;flex-direction:column;
+  flex:1;
 }
 .serv-card-icon{
   width:40px;height:40px;border-radius:10px;
-  background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);
+  background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);
   display:flex;align-items:center;justify-content:center;
-  color:var(--gold);margin-bottom:.9rem;
-  backdrop-filter:blur(4px);
+  color:var(--gold);margin-bottom:1rem;
 }
 .serv-card-icon svg{width:18px;height:18px;}
 .serv-card-name{
-  font-family:'Raleway',sans-serif;font-size:1.05rem;font-weight:700;
-  color:#fff;margin-bottom:.45rem;line-height:1.2;
+  font-family:'Raleway',sans-serif;font-size:1.15rem;font-weight:700;
+  color:#fff;margin-bottom:.7rem;line-height:1.2;
 }
 .serv-card-desc{
-  font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.6;
-  max-height:0;overflow:hidden;
-  transition:max-height .4s ease, opacity .4s ease;
-  opacity:0;
+  font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.7;flex:1;
 }
-.serv-card:hover .serv-card-desc{max-height:100px;opacity:1;}
+.serv-card-link{
+  display:inline-flex;align-items:center;gap:.5rem;
+  margin-top:1.4rem;
+  color:var(--gold);font-size:.78rem;font-weight:600;
+  border:1px solid rgba(201,168,76,.3);
+  padding:.5rem 1.1rem;border-radius:6px;
+  text-decoration:none;width:fit-content;
+  transition:background .25s,border-color .25s;
+}
+.serv-card-link:hover{background:rgba(201,168,76,.1);border-color:var(--gold);}
 
 /* ── TESTIMONIALS ── */
 #testimonials{
@@ -691,9 +686,9 @@ h1.hero-h1{animation:fadeUp .7s ease .35s both;}
   .pers-top{order:1;padding:3rem 1.5rem 1.5rem;}
   .pers-bottom{order:3;padding:0 1.5rem 3rem;}
   #services{padding:3.5rem 1.5rem;}
-  .services-grid{grid-template-columns:1fr;gap:.8rem;}
-  .serv-card{min-height:300px;}
+  .services-grid{grid-template-columns:1fr;gap:1rem;}
   .serv-card-desc{max-height:none;opacity:1;}
+  .serv-card-img{height:200px;}
   #testimonials{padding:3.5rem 1.5rem;}
   .test-grid{grid-template-columns:1fr;}
   #cta-banner{padding:3rem 1.5rem;}
@@ -871,59 +866,51 @@ h1.hero-h1{animation:fadeUp .7s ease .35s both;}
   </div>
   <div class="services-grid">
     <div class="serv-card">
-      <div class="serv-card-img" style="background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80');"></div>
-      <div class="serv-card-gradient"></div>
-      <div class="serv-tag">Popular</div>
+      <div class="serv-card-img" style="background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80');"><div class="serv-tag">Popular</div></div>
       <div class="serv-card-body">
         <div class="serv-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 5v14"/><path d="M18 5v14"/><path d="M4 9h2v6H4a1 1 0 0 1-1-1v-4z"/><path d="M20 9h-2v6h2a1 1 0 0 0 1-1v-4z"/><line x1="6" y1="9" x2="18" y2="9"/><line x1="6" y1="15" x2="18" y2="15"/></svg></div>
         <div class="serv-card-name">Nutrição Esportiva</div>
-        <div class="serv-card-desc">Periodização nutricional para maximizar rendimento, recuperação e composição corporal.</div>
+        <div class="serv-card-desc">Periodização nutricional para maximizar rendimento, recuperação e composição corporal em atletas e praticantes de atividade física.</div>
       </div>
     </div>
     <div class="serv-card">
       <div class="serv-card-img" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80');"></div>
-      <div class="serv-card-gradient"></div>
       <div class="serv-card-body">
         <div class="serv-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 2h1a1 1 0 0 1 1 1v5a5 5 0 0 1-10 0V3a1 1 0 0 1 1-1h1"/><path d="M9 12a5 5 0 0 0 5 5"/><path d="M14 17h1a5 5 0 0 1 5 5"/><circle cx="19" cy="17" r="3"/></svg></div>
         <div class="serv-card-name">Nutrição Clínica</div>
-        <div class="serv-card-desc">Abordagem terapêutica para dislipidemia, diabetes, hipertensão e outras condições metabólicas.</div>
+        <div class="serv-card-desc">Abordagem terapêutica para dislipidemia, diabetes, hipertensão e outras condições metabólicas, com base em evidências científicas.</div>
       </div>
     </div>
     <div class="serv-card">
       <div class="serv-card-img" style="background-image:url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80');"></div>
-      <div class="serv-card-gradient"></div>
       <div class="serv-card-body">
         <div class="serv-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
         <div class="serv-card-name">Emagrecimento</div>
-        <div class="serv-card-desc">Protocolos seguros e sustentáveis para perda de gordura com preservação de massa muscular.</div>
+        <div class="serv-card-desc">Protocolos seguros e sustentáveis para perda de gordura com preservação de massa muscular, sem dietas restritivas extremas.</div>
       </div>
     </div>
     <div class="serv-card">
-      <div class="serv-card-img" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80');"></div>
-      <div class="serv-card-gradient"></div>
-      <div class="serv-tag">Novo</div>
+      <div class="serv-card-img" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80');"><div class="serv-tag">Novo</div></div>
       <div class="serv-card-body">
         <div class="serv-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <div class="serv-card-name">Alta Performance</div>
-        <div class="serv-card-desc">Estratégias para executivos com alta demanda cognitiva e necessidade de energia constante.</div>
+        <div class="serv-card-desc">Estratégias nutricionais para executivos e profissionais que precisam de alta demanda cognitiva e energia ao longo do dia.</div>
       </div>
     </div>
     <div class="serv-card">
       <div class="serv-card-img" style="background-image:url('https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&q=80');"></div>
-      <div class="serv-card-gradient"></div>
       <div class="serv-card-body">
         <div class="serv-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/></svg></div>
         <div class="serv-card-name">Suplementação</div>
-        <div class="serv-card-desc">Prescrição baseada em evidências. Apenas o que realmente faz diferença para você.</div>
+        <div class="serv-card-desc">Prescrição baseada em evidências — sem excessos, sem modismos. Apenas o que realmente faz diferença para você.</div>
       </div>
     </div>
     <div class="serv-card">
       <div class="serv-card-img" style="background-image:url('https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=600&q=80');"></div>
-      <div class="serv-card-gradient"></div>
       <div class="serv-card-body">
         <div class="serv-card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <div class="serv-card-name">Consulta Online</div>
-        <div class="serv-card-desc">Atendimento remoto completo para todo o Brasil com o mesmo protocolo da consulta presencial.</div>
+        <div class="serv-card-desc">Atendimento remoto completo via videochamada para todo o Brasil, com o mesmo protocolo da consulta presencial.</div>
       </div>
     </div>
   </div>
