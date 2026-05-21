@@ -13,13 +13,11 @@
   --green-light:#3a8055;
   --green-pale:#eef5f0;
   --gold:#c9a84c;
-  --gold-light:#e4c87a;
   --cream:#f4efe6;
   --off-white:#faf8f4;
   --gray:#7a7a72;
   --text:#18180f;
   --wa:#25d366;
-  --white:#ffffff;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -123,7 +121,8 @@ nav.scrolled{background:rgba(11,24,16,.82);}
   overflow:hidden;
 }
 .hero-left{
-  background:linear-gradient(145deg,#0b1810 0%,#183324 55%,#265c3a 100%);
+  background:
+    linear-gradient(145deg,rgba(11,24,16,.97) 0%,rgba(24,51,36,.92) 55%,rgba(38,92,58,.88) 100%);
   display:flex;flex-direction:column;justify-content:center;
   padding:calc(68px + 4rem) 5.5rem 5rem 5.5rem;
   position:relative;
@@ -131,6 +130,44 @@ nav.scrolled{background:rgba(11,24,16,.82);}
   flex:1;
   width:100%;
   max-width:100%;
+}
+/* background photo behind gradient */
+.hero-left::before{
+  content:'';
+  position:absolute;inset:0;z-index:-1;
+  background:url('https://images.unsplash.com/photo-1547592180-85f173990554?w=1400&q=70') center/cover no-repeat;
+  opacity:.18;
+}
+/* dot grid decoration */
+.hero-left::after{
+  content:'';
+  position:absolute;
+  right:-20px;top:50%;transform:translateY(-50%);
+  width:180px;height:260px;
+  background-image:radial-gradient(circle,rgba(201,168,76,.28) 1.5px,transparent 1.5px);
+  background-size:14px 14px;
+  pointer-events:none;z-index:0;
+}
+/* glowing orb */
+.hero-orb{
+  position:absolute;
+  width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(38,92,58,.55) 0%,transparent 70%);
+  top:-80px;right:-100px;
+  pointer-events:none;z-index:0;
+}
+/* decorative ring */
+.hero-ring{
+  position:absolute;
+  width:260px;height:260px;border-radius:50%;
+  border:1px solid rgba(201,168,76,.1);
+  bottom:-80px;left:-60px;
+  pointer-events:none;z-index:0;
+}
+.hero-ring::after{
+  content:'';
+  position:absolute;inset:30px;border-radius:50%;
+  border:1px solid rgba(201,168,76,.07);
 }
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:.6rem;
@@ -166,59 +203,9 @@ h1.hero-h1 span{color:var(--gold);}
   padding-bottom:2px;transition:color .25s,border-color .25s;
 }
 .btn-ghost:hover{color:var(--gold);border-color:var(--gold);}
-.hero-float-card{
-  display:flex;align-items:center;gap:1rem;
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:10px;padding:1rem 1.4rem;
-  margin-top:2.5rem;width:fit-content;
-}
-.hero-float-card .card-icon{
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(201,168,76,.15);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;color:var(--gold);
-}
-.hero-float-card .card-icon svg{width:22px;height:22px;}
-.hero-float-card .card-txt strong{display:block;font-size:1.4rem;font-family:'Raleway',sans-serif;font-weight:700;color:#fff;}
-.hero-float-card .card-txt span{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.06em;}
 
 .hero-right{display:none;}
-.hero-right-img{
-  position:absolute;inset:0;
-  display:flex;align-items:flex-end;justify-content:center;
-  overflow:hidden;
-}
-.hero-right-img img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:top center;
-}
-.hero-img-placeholder{
-  width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;gap:1rem;
-  color:rgba(38,92,58,.25);
-}
-.hero-img-placeholder svg{width:80px;height:80px;}
-.hero-img-placeholder span{font-family:'Raleway',sans-serif;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;}
-.hero-dot-pattern{
-  position:absolute;bottom:2rem;left:2rem;
-  width:90px;height:160px;
-  background-image:radial-gradient(circle,rgba(38,92,58,.25) 1.5px,transparent 1.5px);
-  background-size:12px 12px;
-  pointer-events:none;
-}
-.hero-badge{
-  position:absolute;bottom:2.5rem;right:2rem;
-  background:#fff;border-radius:10px;
-  padding:.8rem 1.2rem;
-  box-shadow:0 8px 30px rgba(0,0,0,.12);
-  text-align:center;
-}
-.hero-badge .b-val{font-family:'Raleway',sans-serif;font-size:1.6rem;font-weight:700;color:var(--green-mid);line-height:1;}
-.hero-badge .b-lbl{font-size:.62rem;color:var(--gray);letter-spacing:.08em;text-transform:uppercase;margin-top:.25rem;}
-
+.hero-badge .hero-badge 
 /* ── FEATURES BAR ── */
 #features{
   background:var(--dark);
@@ -243,20 +230,17 @@ h1.hero-h1 span{color:var(--gold);}
 .feat-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.55;}
 
 /* ── SECTION BASE ── */
-.section-eyebrow{
-  display:inline-flex;align-items:center;gap:.6rem;
-  color:var(--gold);font-size:.68rem;font-weight:600;
-  letter-spacing:.18em;text-transform:uppercase;margin-bottom:.8rem;
-}
-.section-eyebrow::before{content:'';width:24px;height:2px;background:var(--gold);border-radius:2px;}
 .section-title{
   font-family:'Raleway',sans-serif;
   font-size:clamp(1.8rem,3vw,2.8rem);
   font-weight:700;line-height:1.15;margin-bottom:1.2rem;
+  text-align:center;
 }
 .section-title em{font-style:normal;color:var(--green-mid);}
 .section-title.white{color:#fff;}
 .section-title.white em{color:var(--gold);}
+/* hero title stays left */
+.hero-h1{text-align:left !important;}
 
 /* ── PERSONALIZED ── */
 #personalized{
@@ -278,12 +262,6 @@ h1.hero-h1 span{color:var(--gold);}
   position:absolute;inset:0;
   background:linear-gradient(to right,rgba(11,24,16,.35) 0%,transparent 60%);
 }
-.pers-img-ph{
-  display:flex;flex-direction:column;align-items:center;gap:.8rem;
-  color:rgba(255,255,255,.2);
-}
-.pers-img-ph svg{width:70px;height:70px;}
-.pers-img-ph span{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-family:'Raleway',sans-serif;}
 .pers-top{
   grid-area:top;
   padding:4rem 4.5rem 1.5rem;
@@ -406,7 +384,7 @@ h1.hero-h1 span{color:var(--gold);}
 .cta-inner{position:relative;z-index:1;}
 .cta-banner-title{
   font-family:'Raleway',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);
-  font-weight:700;color:#fff;margin-bottom:.8rem;
+  font-weight:700;color:#fff;margin-bottom:.8rem;text-align:center;
 }
 .cta-banner-desc{color:rgba(255,255,255,.65);font-size:.95rem;margin-bottom:2rem;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.65;}
 .btn-wa-lg{
@@ -422,50 +400,72 @@ h1.hero-h1 span{color:var(--gold);}
 
 /* ── DOCTOR BIO ── */
 #doctor{
-  display:grid;grid-template-columns:42% 58%;
-  min-height:500px;align-items:stretch;
+  background:var(--dark);
+  padding:6rem 5rem;
+  position:relative;
+  overflow:hidden;
 }
-.doctor-img{
-  position:relative;overflow:hidden;
-  background:linear-gradient(145deg,var(--off-white) 0%,#e8e8e4 100%);
-  display:flex;align-items:flex-end;justify-content:center;
+#doctor::before{
+  content:'';position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1547592180-85f173990554?w=1400&q=50') center/cover no-repeat;
+  opacity:.05;
 }
-.doctor-img-ph{
-  display:flex;flex-direction:column;align-items:center;gap:.8rem;
-  color:rgba(38,92,58,.2);padding-bottom:2rem;
+.doctor-inner{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns:380px 1fr;
+  gap:5rem;
+  align-items:center;
+  max-width:1100px;
+  margin:0 auto;
 }
-.doctor-img-ph svg{width:80px;height:80px;}
-.doctor-img-ph span{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-family:'Raleway',sans-serif;}
-.doctor-img-badge{
-  position:absolute;top:2rem;left:2rem;
-  background:var(--dark);border:1px solid rgba(201,168,76,.3);
-  padding:.75rem 1.1rem;border-radius:8px;
+.doctor-photo-wrap{position:relative;}
+.doctor-photo-frame{
+  width:100%;aspect-ratio:3/4;
+  border-radius:16px;overflow:hidden;
+  background:url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80') center top/cover no-repeat;
+  box-shadow:0 24px 60px rgba(0,0,0,.45);
 }
-.doctor-img-badge .db-num{font-family:'Raleway',sans-serif;font-size:1.5rem;color:var(--gold);font-weight:700;line-height:1;}
-.doctor-img-badge .db-lbl{font-size:.6rem;color:rgba(255,255,255,.45);letter-spacing:.08em;margin-top:.2rem;}
-.doctor-content{
-  padding:5rem 5rem 5rem 4.5rem;
-  background:var(--off-white);
-  display:flex;flex-direction:column;justify-content:center;
+.doctor-photo-accent{
+  position:absolute;bottom:-16px;right:-16px;
+  width:60%;height:60%;
+  border:2px solid rgba(201,168,76,.2);
+  border-radius:16px;z-index:-1;
 }
-.doctor-name{
-  font-family:'Raleway',sans-serif;font-size:2rem;font-weight:800;
-  color:var(--dark);margin-bottom:.3rem;
+.doctor-text-side{}
+.doctor-name{font-family:'Raleway',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;color:#fff;margin-bottom:.6rem;text-align:left;}
+.doctor-title-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);
+  color:var(--gold);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  padding:.35rem .9rem;border-radius:20px;margin-bottom:1.6rem;
 }
-.doctor-role{
-  font-size:.85rem;color:var(--green-mid);font-weight:600;
-  letter-spacing:.06em;margin-bottom:1.4rem;
+.doctor-bio{color:rgba(255,255,255,.5);font-size:.92rem;line-height:1.8;margin-bottom:2rem;}
+.doctor-creds{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.8rem;}
+.doctor-cred{
+  display:flex;align-items:flex-start;gap:.7rem;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:8px;padding:.8rem 1rem;
+  font-size:.8rem;color:rgba(255,255,255,.7);line-height:1.4;
+  transition:border-color .25s;
 }
-.doctor-bio{color:var(--gray);font-size:.9rem;line-height:1.78;margin-bottom:1.8rem;}
-.doctor-creds{display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem;}
-.doctor-cred{display:flex;align-items:center;gap:.8rem;font-size:.85rem;color:var(--text);}
-.dc-dot{width:20px;height:20px;border-radius:50%;background:var(--green-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;}
+.doctor-cred:hover{border-color:rgba(201,168,76,.3);}
+.dc-dot{width:20px;height:20px;border-radius:50%;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);}
 .dc-dot svg{width:10px;height:10px;}
 .doctor-crn{
-  display:inline-block;margin-bottom:1.8rem;
-  background:rgba(38,92,58,.08);border:1px solid rgba(38,92,58,.15);
-  padding:.4rem .9rem;border-radius:4px;
-  font-size:.75rem;color:var(--green-mid);font-weight:600;letter-spacing:.06em;
+  display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.8rem;
+  background:rgba(38,92,58,.2);border:1px solid rgba(38,92,58,.35);
+  padding:.45rem 1rem;border-radius:4px;
+  font-size:.76rem;color:rgba(255,255,255,.45);font-weight:500;letter-spacing:.04em;
+}
+.doctor-btn-row{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+.doctor-photo-mobile{display:none;}
+.doctor-photo-frame-mobile{
+  width:100%;height:280px;
+  border-radius:12px;overflow:hidden;
+  background:url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80') center top/cover no-repeat;
+  box-shadow:0 16px 40px rgba(0,0,0,.4);
+  margin:1.2rem 0;
 }
 
 /* ── CLINIC ── */
@@ -501,12 +501,6 @@ h1.hero-h1 span{color:var(--gold);}
   background:linear-gradient(135deg,#265c3a 0%,#3a8055 60%,#4a9065 100%);
   display:flex;align-items:center;justify-content:center;
 }
-.clinic-img-ph{
-  display:flex;flex-direction:column;align-items:center;gap:.8rem;
-  color:rgba(255,255,255,.2);
-}
-.clinic-img-ph svg{width:70px;height:70px;}
-.clinic-img-ph span{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-family:'Raleway',sans-serif;}
 
 /* ── CONTACT ── */
 #contact{
@@ -532,8 +526,6 @@ h1.hero-h1 span{color:var(--gold);}
   display:flex;align-items:center;justify-content:center;
   flex-direction:column;gap:1rem;color:rgba(38,92,58,.3);
 }
-.map-ph svg{width:48px;height:48px;}
-.map-ph span{font-size:.82rem;letter-spacing:.1em;font-family:'Raleway',sans-serif;}
 
 /* ── FOOTER ── */
 footer{
@@ -569,7 +561,15 @@ footer{
 .wa-float:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(37,211,102,.5);}
 .wa-float svg{width:20px;height:20px;flex-shrink:0;}
 .wa-pulse{position:absolute;top:-2px;right:-2px;width:11px;height:11px;border-radius:50%;background:#ff4444;border:2px solid #fff;animation:pls 2s ease infinite;}
-@keyframes floatUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes waPulse{
+  0%,100%{box-shadow:0 6px 20px rgba(37,211,102,.3);}
+  50%{box-shadow:0 6px 28px rgba(37,211,102,.6), 0 0 0 6px rgba(37,211,102,.1);}
+}
+.btn-primary,.btn-green,.nav-cta,.modal-wa-btn,.mobile-cta,.contact-wa-main,.btn-wa-lg,.wa-float{
+  animation:waPulse 2.5s ease-in-out infinite;
+}
+/* keep individual hover transforms working */
+.btn-primary:hover,.btn-green:hover,.btn-wa-lg:hover,.wa-float:hover{animation:none;}
 @keyframes pls{0%,100%{transform:scale(1);}50%{transform:scale(1.35);}}
 
 /* ── ANIMS ── */
@@ -578,7 +578,6 @@ footer{
 h1.hero-h1{animation:fadeUp .7s ease .35s both;}
 .hero-desc{animation:fadeUp .7s ease .48s both;}
 .hero-btns{animation:fadeUp .7s ease .6s both;}
-.hero-float-card{animation:fadeUp .7s ease .72s both;}
 
 /* ── MOBILE ── */
 @media(max-width:900px){
@@ -588,7 +587,7 @@ h1.hero-h1{animation:fadeUp .7s ease .35s both;}
   .nav-hamburger{display:flex;margin-left:auto;}
   .mobile-menu{display:block;}
   #hero{display:flex;}
-  .hero-left{padding:4rem 1.5rem 3rem;}
+  .hero-left{padding:2rem 1.5rem 3rem;}
   .hero-right{display:none;}
   #features{grid-template-columns:1fr;}
   #personalized{display:flex;flex-direction:column;}
@@ -600,9 +599,12 @@ h1.hero-h1{animation:fadeUp .7s ease .35s both;}
   #testimonials{padding:3.5rem 1.5rem;}
   .test-grid{grid-template-columns:1fr;}
   #cta-banner{padding:3rem 1.5rem;}
-  #doctor{grid-template-columns:1fr;}
-  .doctor-img{height:320px;}
-  .doctor-content{padding:3rem 1.5rem;}
+  #doctor{padding:3.5rem 1.5rem;}
+  .doctor-inner{grid-template-columns:1fr;display:flex;flex-direction:column;}
+  .doctor-photo-wrap{display:none;}
+  .doctor-photo-mobile{display:block;}
+  .doctor-text-side{order:1;display:flex;flex-direction:column;}
+  .doctor-creds{grid-template-columns:1fr;}
   #clinic{grid-template-columns:1fr;}
   .clinic-content{padding:3rem 1.5rem;}
   .clinic-img{height:260px;}
@@ -682,6 +684,8 @@ h1.hero-h1{animation:fadeUp .7s ease .35s both;}
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
+    <div class="hero-orb"></div>
+    <div class="hero-ring"></div>
     <div class="hero-eyebrow">
       <svg width="13" height="13"><use href="#i-award"/></svg>
       Nutricionista Esportivo
@@ -697,8 +701,6 @@ h1.hero-h1{animation:fadeUp .7s ease .35s both;}
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-right-img"></div>
-    <div class="hero-dot-pattern"></div>
   </div>
 </section>
 
@@ -729,27 +731,39 @@ h1.hero-h1{animation:fadeUp .7s ease .35s both;}
 
 <!-- DOCTOR BIO -->
 <section id="doctor">
-  <div class="doctor-img" style="background:url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80') center top/cover no-repeat;">
-    <div class="doctor-img-badge">
-      <div class="db-num">12+</div>
-      <div class="db-lbl">Anos de experiência</div>
+  <div class="doctor-inner">
+    <div class="doctor-photo-wrap">
+      <div class="doctor-photo-frame"></div>
+      <div class="doctor-photo-accent"></div>
     </div>
-  </div>
-  <div class="doctor-content">
-    <div class="doctor-name">Dr. Rafael Mendes</div>
-
-    <p class="doctor-bio">Especialista com mais de 12 anos de experiência no acompanhamento de atletas profissionais, praticantes amadores e executivos de alta performance. Apaixonado por ciência aplicada à nutrição, o Dr. Rafael acredita que cada paciente merece um protocolo único, construído com base em dados e com respeito à individualidade.</p>
-    <div class="doctor-creds">
-      <div class="doctor-cred"><div class="dc-dot"><svg width="10" height="10"><use href="#i-check"/></svg></div>Mestrado em Fisiologia do Exercício — USP</div>
-      <div class="doctor-cred"><div class="dc-dot"><svg width="10" height="10"><use href="#i-check"/></svg></div>Pós-graduação em Nutrição Funcional &amp; Esportiva</div>
-      <div class="doctor-cred"><div class="dc-dot"><svg width="10" height="10"><use href="#i-check"/></svg></div>Membro da Sociedade Brasileira de Nutrição Esportiva</div>
-      <div class="doctor-cred"><div class="dc-dot"><svg width="10" height="10"><use href="#i-check"/></svg></div>Certificado de Excelência em Atendimento — 2022, 2023, 2024</div>
+    <div class="doctor-text-side">
+      <div class="doctor-top">
+        <div class="doctor-title-tag">
+          <svg width="12" height="12"><use href="#i-award"/></svg>
+          Nutricionista Esportivo &amp; Clínico
+        </div>
+        <div class="doctor-name">Dr. Rafael Mendes</div>
+      </div>
+      <div class="doctor-photo-mobile">
+        <div class="doctor-photo-frame-mobile"></div>
+      </div>
+      <div class="doctor-bottom">
+        <p class="doctor-bio">Especialista com mais de 12 anos de experiência no acompanhamento de atletas profissionais, praticantes amadores e executivos de alta performance. Apaixonado por ciência aplicada à nutrição, o Dr. Rafael acredita que cada paciente merece um protocolo único, construído com base em dados e com respeito à individualidade.</p>
+        <div class="doctor-creds">
+          <div class="doctor-cred"><div class="dc-dot"><svg width="10" height="10"><use href="#i-check"/></svg></div>Mestrado em Fisiologia do Exercício — USP</div>
+          <div class="doctor-cred"><div class="dc-dot"><svg width="10" height="10"><use href="#i-check"/></svg></div>Pós-graduação em Nutrição Funcional &amp; Esportiva</div>
+          <div class="doctor-cred"><div class="dc-dot"><svg width="10" height="10"><use href="#i-check"/></svg></div>Membro da Sociedade Brasileira de Nutrição Esportiva</div>
+          <div class="doctor-cred"><div class="dc-dot"><svg width="10" height="10"><use href="#i-check"/></svg></div>Certificado de Excelência — 2022, 2023, 2024</div>
+        </div>
+        <span class="doctor-crn">CRN-MG 12.345 · Conselho Regional de Nutrição</span>
+        <div class="doctor-btn-row">
+          <a href="https://wa.me/5535999999999" class="btn-primary" target="_blank">
+            <svg width="16" height="16"><use href="#i-wa"/></svg>
+            Conversar com o Dr. Rafael
+          </a>
+        </div>
+      </div>
     </div>
-    <span class="doctor-crn">CRN-MG 12.345 · Conselho Regional de Nutrição</span>
-    <a href="https://wa.me/5535999999999" class="btn-green" target="_blank">
-      <svg width="16" height="16"><use href="#i-wa"/></svg>
-      Conversar com o Dr. Rafael
-    </a>
   </div>
 </section>
 
@@ -978,11 +992,11 @@ h1.hero-h1{animation:fadeUp .7s ease .35s both;}
       </a>
     </div>
   </div>
-  <div class="map-ph" style="background:url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1000&q=80') center/cover no-repeat;position:relative;">
-    <div style="position:absolute;inset:0;background:rgba(11,24,16,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
-      <svg width="48" height="48" style="color:rgba(201,168,76,.8);"><use href="#i-pin"/></svg>
-      <span style="font-size:.9rem;font-family:'Raleway',sans-serif;color:#fff;letter-spacing:.1em;">Rua das Acácias, 412 · Varginha/MG</span>
-    </div>
+  <div class="map-ph" style="padding:0;overflow:hidden;">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.123456789!2d-45.4294!3d-21.5519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c9b0b0b0b0b0b1%3A0x0!2sVarginha%2C%20MG!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+      width="100%" height="100%" style="border:0;display:block;min-height:400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
   </div>
 </section>
 
