@@ -169,6 +169,33 @@ img { display: block; max-width: 100%; }
   gap: 0.4rem;
 }
 
+.drawer-close {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.4rem;
+  width: 38px;
+  height: 38px;
+  background: rgba(201, 169, 97, 0.12);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-light);
+  transition: all 0.3s;
+  padding: 0;
+}
+
+.drawer-close:hover {
+  background: var(--gold-primary);
+  color: var(--green-deep);
+  border-color: var(--gold-primary);
+  transform: rotate(90deg);
+}
+
+.drawer-close svg { width: 16px; height: 16px; stroke-width: 2; }
+
 .mobile-menu.active .mobile-drawer { transform: translateX(0); }
 
 .mobile-drawer a {
@@ -344,14 +371,14 @@ section { padding: 7rem 4rem; position: relative; }
 
 .section-title {
   font-size: clamp(1.8rem, 3vw, 2.8rem);
-  font-weight: 400;
+  font-weight: 600;
   margin-bottom: 1.2rem;
 }
 
 .section-title em {
   font-style: italic;
   color: var(--gold-primary);
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .section-intro {
@@ -362,7 +389,8 @@ section { padding: 7rem 4rem; position: relative; }
   line-height: 1.75;
 }
 
-.section-header { margin-bottom: 4rem; }
+.section-header { margin-bottom: 4rem; text-align: center; }
+.section-header .section-intro { margin-left: auto; margin-right: auto; margin-bottom: 0; }
 
 /* === ABOUT === */
 .about {
@@ -376,6 +404,8 @@ section { padding: 7rem 4rem; position: relative; }
   position: relative;
   aspect-ratio: 4/5;
   overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(11, 24, 16, 0.12);
 }
 
 .about-image img {
@@ -392,6 +422,7 @@ section { padding: 7rem 4rem; position: relative; }
   width: 100%;
   height: 100%;
   border: 1px solid var(--gold-primary);
+  border-radius: 10px;
   z-index: -1;
 }
 
@@ -446,11 +477,13 @@ section { padding: 7rem 4rem; position: relative; }
   overflow: hidden;
   transition: all 0.4s;
   border: 1px solid rgba(201, 169, 97, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(11, 24, 16, 0.04);
 }
 
 .service-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(11, 24, 16, 0.08);
+  box-shadow: 0 24px 50px rgba(11, 24, 16, 0.1);
   border-color: rgba(201, 169, 97, 0.3);
 }
 
@@ -470,13 +503,7 @@ section { padding: 7rem 4rem; position: relative; }
 
 .service-body { padding: 1.8rem 1.8rem 2rem; }
 
-.service-icon {
-  width: 32px;
-  height: 32px;
-  color: var(--gold-primary);
-  margin-bottom: 1.1rem;
-  stroke-width: 1.4;
-}
+.service-icon { display: none; }
 
 .service-name {
   font-size: 1.21rem;
@@ -521,6 +548,7 @@ section { padding: 7rem 4rem; position: relative; }
   padding: 1.6rem;
   background: rgba(255, 255, 255, 0.035);
   border: 1px solid rgba(201, 169, 97, 0.2);
+  border-radius: 10px;
   align-items: center;
   transition: all 0.3s;
 }
@@ -528,12 +556,15 @@ section { padding: 7rem 4rem; position: relative; }
 .top-card:hover {
   background: rgba(201, 169, 97, 0.08);
   border-color: var(--gold-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
 }
 
 .top-card img {
   width: 120px;
   height: 120px;
   object-fit: cover;
+  border-radius: 8px;
   flex-shrink: 0;
 }
 
@@ -562,7 +593,15 @@ section { padding: 7rem 4rem; position: relative; }
   position: relative;
   aspect-ratio: 4/5;
   overflow: hidden;
+  border-radius: 12px;
   cursor: pointer;
+  box-shadow: 0 8px 28px rgba(11, 24, 16, 0.08);
+  transition: box-shadow 0.4s, transform 0.4s;
+}
+
+.ba-card:hover {
+  box-shadow: 0 20px 50px rgba(11, 24, 16, 0.18);
+  transform: translateY(-4px);
 }
 
 .ba-card img {
@@ -617,13 +656,16 @@ section { padding: 7rem 4rem; position: relative; }
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: white;
-  background: rgba(11, 24, 16, 0.6);
-  padding: 4px 10px;
+  background: rgba(11, 24, 16, 0.65);
+  padding: 5px 12px;
+  border-radius: 4px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 2;
 }
 
 .ba-label.before { top: 14px; left: 14px; }
-.ba-label.after { bottom: 5.5rem; left: 14px; background: rgba(201, 169, 97, 0.85); }
+.ba-label.after { top: calc(50% + 14px); left: 14px; background: rgba(201, 169, 97, 0.9); color: var(--green-deep); }
 
 .ba-cta { text-align: center; }
 
@@ -640,6 +682,8 @@ section { padding: 7rem 4rem; position: relative; }
   aspect-ratio: 4/5;
   overflow: hidden;
   position: relative;
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(11, 24, 16, 0.12);
 }
 
 .why-image img { width: 100%; height: 100%; object-fit: cover; }
@@ -652,6 +696,7 @@ section { padding: 7rem 4rem; position: relative; }
   width: 70%;
   height: 30%;
   border: 1px solid var(--gold-primary);
+  border-radius: 10px;
   z-index: 0;
   pointer-events: none;
 }
@@ -719,8 +764,16 @@ section { padding: 7rem 4rem; position: relative; }
 .ig-card {
   aspect-ratio: 1/1;
   overflow: hidden;
+  border-radius: 10px;
   position: relative;
   cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.ig-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.25);
 }
 
 .ig-card img {
@@ -762,7 +815,15 @@ section { padding: 7rem 4rem; position: relative; }
   padding: 2.2rem;
   background: var(--bg-ivory);
   border-top: 2px solid var(--gold-primary);
+  border-radius: 0 0 12px 12px;
   position: relative;
+  box-shadow: 0 6px 22px rgba(11, 24, 16, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.testimonial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(11, 24, 16, 0.1);
 }
 
 .testimonial::before {
@@ -851,8 +912,10 @@ section { padding: 7rem 4rem; position: relative; }
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(201, 169, 97, 0.28);
   padding: 3rem 2.6rem;
+  border-radius: 14px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
   position: relative;
 }
 
@@ -931,6 +994,9 @@ section { padding: 7rem 4rem; position: relative; }
 .gallery-grid > div {
   overflow: hidden;
   position: relative;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(11, 24, 16, 0.08);
+  transition: box-shadow 0.4s, transform 0.4s;
 }
 
 .gallery-grid img {
@@ -938,6 +1004,11 @@ section { padding: 7rem 4rem; position: relative; }
   height: 100%;
   object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gallery-grid > div:hover {
+  box-shadow: 0 20px 45px rgba(11, 24, 16, 0.15);
+  transform: translateY(-3px);
 }
 
 .gallery-grid > div:hover img { transform: scale(1.05); }
@@ -1020,6 +1091,8 @@ section { padding: 7rem 4rem; position: relative; }
   height: 100%;
   min-height: 460px;
   border: 1px solid rgba(201, 169, 97, 0.25);
+  border-radius: 10px;
+  box-shadow: 0 12px 36px rgba(11, 24, 16, 0.08);
   filter: grayscale(0.15) contrast(0.98);
 }
 
@@ -1174,8 +1247,6 @@ footer .rights { letter-spacing: 0.04em; }
 
   footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.4rem; }
 
-  .ba-label.after { bottom: 4.5rem; }
-
   .fab-whatsapp { width: 54px; height: 54px; bottom: 18px; right: 18px; }
   .fab-whatsapp svg { width: 26px; height: 26px; }
 }
@@ -1201,6 +1272,9 @@ footer .rights { letter-spacing: 0.04em; }
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu" onclick="closeMenuOutside(event)">
   <div class="mobile-drawer">
+    <button class="drawer-close" onclick="closeMenu()" aria-label="Fechar menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
     <a href="#sobre" onclick="closeMenu()">Sobre</a>
     <a href="#servicos" onclick="closeMenu()">Tratamentos</a>
     <a href="#resultados" onclick="closeMenu()">Resultados</a>
